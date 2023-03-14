@@ -1,20 +1,18 @@
+import React, { useContext } from "react";
+import { Header } from "../../components/Header/Header";
+import { PokemonCard } from "../../components/PokemonCard/PokemonCard";
+import { GlobalContext } from "../../context/GlobalContext";
 import { Box, Heading } from "@chakra-ui/react";
-import React from "react";
-import { Header } from "../../Components/Header/Header";
-import { PokemonCard } from "../../Components/PokemonCard/PokemonCard";
 
 export default function PokedexPage() {
+  const { pokedex, removeFromPokedex } = useContext(GlobalContext);
+
+  console.log(pokedex);
+
   return (
     <>
       <Header />
-      <Box
-        w={"100%"}
-        minH={"84vh"}
-        bg={"#DDDDDD"}
-        pt="60px"
-        pr="40px"
-        pl="40px"
-      >
+      <Box w={"100%"} bg={"#5E5E5E"} pt="60px" pr="40px" pl="40px">
         <Heading
           fontSize={"48px"}
           fontFamily={"poppins.700"}
@@ -23,7 +21,13 @@ export default function PokedexPage() {
         >
           Meus Pokémons
         </Heading>
-        <PokemonCard />
+        {pokedex.map((pokemon) => (
+          <PokemonCard
+            key={pokemon.name}
+            namePokemon={pokemon.name}
+            removeFromPokedex={removeFromPokedex}
+          />
+        ))}
       </Box>
     </>
   );

@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import PokemonsListPage from "../Pages/PokemonsListPage/PokemonsListPage";
-import PokedexPage from "../Pages/PokedexPage/PokedexPage";
-import PokemonDetailPage from "../Pages/PokemonDetailPage/PokemonDetailPage";
-import ErrorPage from "../Pages/ErroPage";
+import PokemonsListPage from "../pages/PokemonsListPage/PokemonsListPage";
+import PokedexPage from "../pages/PokedexPage/PokedexPage";
+import PokemonDetailPage from "../pages/PokemonDetailPage/PokemonDetailPage";
+import ErrorPage from "../pages/ErroPage";
 
 export default function Router() {
   return (
