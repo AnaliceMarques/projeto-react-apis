@@ -7,8 +7,6 @@ import { Box, Heading } from "@chakra-ui/react";
 export default function PokedexPage() {
   const { pokedex, removeFromPokedex } = useContext(GlobalContext);
 
-  console.log(pokedex);
-
   return (
     <>
       <Header />

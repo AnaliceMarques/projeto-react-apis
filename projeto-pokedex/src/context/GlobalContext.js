@@ -24,15 +24,16 @@ export function GlobalContextProvider({ children }) {
       const newPokedex = [...pokedex, pokemonToAdd];
       setPokedex(newPokedex);
     }
+    alert("Gotcha!\nO Pokémon foi adicionado a sua Pokédex");
   };
 
   const removeFromPokedex = (pokemonToRemove) => {
-    console.log(pokemonToRemove);
     const newPokedex = pokedex.filter(
       (pokemonInPokedex) => pokemonInPokedex.name !== pokemonToRemove.name
     );
 
     setPokedex(newPokedex);
+    alert("Oh, no!\nO Pokémon foi removido da sua Pokédex");
   };
 
   return (

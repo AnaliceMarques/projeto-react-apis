@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import LogoPokemon from "../../image/logo-pokemon.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
   goToPokedexPage,
   goToPokemonsListPage,
 } from "../../routes/coordinator";
+import { GlobalContext } from "../../context/GlobalContext";
+import { useRequestData } from "../../hooks/useRequestData";
 import { Box, Button, Icon, Image } from "@chakra-ui/react";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 
@@ -12,8 +14,19 @@ export const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const arrayPokedex = ["bulbasaur", "picachu", "catchupi"];
-  const pokemon = { name: "pika", type: "eletric" };
+  const { pokedex, addToPokedex, removeFromPokedex } =
+    useContext(GlobalContext);
+
+  const pokemonInDetails = location.pathname.slice(9);
+
+  const pokemonInPokedex = pokedex.find(
+    (pokemonInPokedex) => pokemonInPokedex.name === pokemonInDetails
+  );
+
+  const [pokemon, isLoading, isLoaded, error] = useRequestData(
+    {},
+    `/${pokemonInDetails}`
+  );
 
   const renderHeader = () => {
     switch (location.pathname) {
@@ -95,7 +108,7 @@ export const Header = () => {
             /> */}
           </Box>
         );
-      case "/details":
+      case `/details/${pokemonInDetails}`:
         return (
           <Box
             display={"flex"}
@@ -129,7 +142,7 @@ export const Header = () => {
               mr={"301px"}
               ml={"256px"}
             /> */}
-            {arrayPokedex.includes(pokemon.name) ? (
+            {pokemonInPokedex ? (
               <Button
                 bg={"#FF6262"}
                 width={"226px"}
@@ -145,6 +158,7 @@ export const Header = () => {
                   borderColor: "#FF6262",
                 }}
                 mr={"40px"}
+                onClick={() => removeFromPokedex(pokemonInPokedex)}
               >
                 Excluir da Pokédex
               </Button>
@@ -164,6 +178,7 @@ export const Header = () => {
                   borderColor: "#33A4F5",
                 }}
                 mr={"40px"}
+                onClick={() => addToPokedex(pokemon)}
               >
                 Adicionar na Pokédex
               </Button>

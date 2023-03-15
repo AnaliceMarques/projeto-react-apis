@@ -2,6 +2,8 @@ import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { goToPokemonDetailPage } from "../../routes/coordinator";
 import { useRequestData } from "../../hooks/useRequestData";
+import { getTypes } from "../../utils/ReturnPokemonType";
+import { getColors } from "../../utils/ReturnCardColor";
 import {
   Card,
   CardBody,
@@ -28,6 +30,7 @@ export const PokemonCard = ({
     `/${namePokemon}`
   );
   // console.log(pokemon);
+
   return (
     <>
       {!isLoaded ? (
@@ -47,8 +50,14 @@ export const PokemonCard = ({
         //     <Text textTransform={"capitalize"} size="md">
         //       {pokemon.name}
         //     </Text>
-        //     {pokemon.types.map((element) => {
-        //   return <Text> {element.type.name} </Text>;
+        //  {pokemon.types.map((element) => {
+        //   return (
+        //     <Image
+        //       key={element.type.name}
+        //       src={getTypes(element.type.name)}
+        //       alt={element.type.name}
+        //     />
+        //   );
         // })}
 
         // <Image
@@ -90,7 +99,7 @@ export const PokemonCard = ({
         //   </Box>
         // </Box>
         // )
-        <Card maxW="sm">
+        <Card maxW="sm" bgColor={getColors(pokemon.types[0].type.name)}>
           <CardBody display="flex" justifyContent="space-between">
             <Stack mt="6" spacing="3">
               <Text>
@@ -99,7 +108,13 @@ export const PokemonCard = ({
               <Heading size="md">{pokemon.name}</Heading>
               {/* <Text color="blue.600" fontSize="2xl"> */}
               {pokemon.types.map((element) => {
-                return <Text> {element.type.name} </Text>;
+                return (
+                  <Image
+                    key={element.type.name}
+                    src={getTypes(element.type.name)}
+                    alt={element.type.name}
+                  />
+                );
               })}
               {/* </Text> */}
             </Stack>
@@ -116,7 +131,7 @@ export const PokemonCard = ({
               <Button
                 variant="ghost"
                 colorScheme="blue"
-                onClick={() => goToPokemonDetailPage(navigate)}
+                onClick={() => goToPokemonDetailPage(navigate, pokemon)}
               >
                 Detalhes
               </Button>

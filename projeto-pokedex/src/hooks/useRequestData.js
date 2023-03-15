@@ -14,7 +14,6 @@ export const useRequestData = (initialState, path) => {
 
   const getListPokemons = async () => {
     try {
-      console.log("entrei");
       setIsLoading(true);
       const res = await axios.get(`${baseURL}${path}`);
       setData(res.data);
