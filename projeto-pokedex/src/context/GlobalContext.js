@@ -15,21 +15,21 @@ export function GlobalContextProvider({ children }) {
     }
   }, [isLoaded]);
 
-  const addToPokedex = (pokemonToAdd) => {
+  const addToPokedex = (namePokemonToAdd) => {
     const isAlreadyOnPokedex = pokedex.find(
-      (pokemonInPokedex) => pokemonInPokedex.name === pokemonToAdd.name
+      (pokemonInPokedex) => pokemonInPokedex === namePokemonToAdd
     );
 
     if (!isAlreadyOnPokedex) {
-      const newPokedex = [...pokedex, pokemonToAdd];
+      const newPokedex = [...pokedex, namePokemonToAdd];
       setPokedex(newPokedex);
     }
     alert("Gotcha!\nO Pokémon foi adicionado a sua Pokédex");
   };
 
-  const removeFromPokedex = (pokemonToRemove) => {
+  const removeFromPokedex = (namePokemonToRemove) => {
     const newPokedex = pokedex.filter(
-      (pokemonInPokedex) => pokemonInPokedex.name !== pokemonToRemove.name
+      (pokemonInPokedex) => pokemonInPokedex !== namePokemonToRemove
     );
 
     setPokedex(newPokedex);

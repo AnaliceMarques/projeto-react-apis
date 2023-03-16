@@ -12,7 +12,7 @@ export default function PokemonsListPage() {
     listPokemons.filter(
       (pokemonInList) =>
         !pokedex.find(
-          (pokemonInPokedex) => pokemonInList.name === pokemonInPokedex.name
+          (pokemonInPokedex) => pokemonInList.name === pokemonInPokedex
         )
     );
 

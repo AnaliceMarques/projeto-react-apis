@@ -21,8 +21,8 @@ export default function PokedexPage() {
         </Heading>
         {pokedex.map((pokemon) => (
           <PokemonCard
-            key={pokemon.name}
-            namePokemon={pokemon.name}
+            key={pokemon}
+            namePokemon={pokemon}
             removeFromPokedex={removeFromPokedex}
           />
         ))}

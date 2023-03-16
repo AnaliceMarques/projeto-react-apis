@@ -140,7 +140,7 @@ export const PokemonCard = ({
                 <Button
                   variant="solid"
                   colorScheme="blue"
-                  onClick={() => addToPokedex(pokemon)}
+                  onClick={() => addToPokedex(pokemon.name)}
                 >
                   Capturar!
                 </Button>
@@ -149,7 +149,7 @@ export const PokemonCard = ({
                   variant="solid"
                   colorScheme="blue"
                   bg="#FF6262"
-                  onClick={() => removeFromPokedex(pokemon)}
+                  onClick={() => removeFromPokedex(pokemon.name)}
                 >
                   Remover
                 </Button>

@@ -6,7 +6,6 @@ import {
   goToPokemonsListPage,
 } from "../../routes/coordinator";
 import { GlobalContext } from "../../context/GlobalContext";
-import { useRequestData } from "../../hooks/useRequestData";
 import { Box, Button, Icon, Image } from "@chakra-ui/react";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 
@@ -17,16 +16,9 @@ export const Header = () => {
   const { pokedex, addToPokedex, removeFromPokedex } =
     useContext(GlobalContext);
 
-  const pokemonInDetails = location.pathname.slice(9);
+  const pokemonDetails = location.pathname.slice(9);
 
-  const pokemonInPokedex = pokedex.find(
-    (pokemonInPokedex) => pokemonInPokedex.name === pokemonInDetails
-  );
-
-  const [pokemon, isLoading, isLoaded, error] = useRequestData(
-    {},
-    `/${pokemonInDetails}`
-  );
+  const pokemonInPokedex = pokedex.includes(pokemonDetails);
 
   const renderHeader = () => {
     switch (location.pathname) {
@@ -108,7 +100,7 @@ export const Header = () => {
             /> */}
           </Box>
         );
-      case `/details/${pokemonInDetails}`:
+      case `/details/${pokemonDetails}`:
         return (
           <Box
             display={"flex"}
@@ -158,7 +150,7 @@ export const Header = () => {
                   borderColor: "#FF6262",
                 }}
                 mr={"40px"}
-                onClick={() => removeFromPokedex(pokemonInPokedex)}
+                onClick={() => removeFromPokedex(pokemonDetails)}
               >
                 Excluir da Pokédex
               </Button>
@@ -178,7 +170,7 @@ export const Header = () => {
                   borderColor: "#33A4F5",
                 }}
                 mr={"40px"}
-                onClick={() => addToPokedex(pokemon)}
+                onClick={() => addToPokedex(pokemonDetails)}
               >
                 Adicionar na Pokédex
               </Button>
