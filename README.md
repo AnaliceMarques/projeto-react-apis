@@ -1,19 +1,8 @@
 # **Projeto React e API's**
 
-![Pokémon](./src/image/logo-pokemon.png)
-
 O Projeto React e APIs é um site de pokémons que possui três páginas: Home, Pokedex e Detalhes.
 
 Este projeto tem como fonte de dados para a sua criação a [Poke Api](https://pokeapi.co/ "Poke Api"), uma Api pública, muito usada para aplicações focadas em aprendizado de programação.
-
-## **Índice**
-
-- <a href="#funcionalidades"> Funcionalidades do Projeto </a>
-- <a href="#link"> Link de acesso </a>
-- <a href="#tecnologias"> Tecnologias Utilizadas </a>
-- <a href="#rodar"> Como rodar este projeto? </a>
-- <a href="#contato"> Contato </a>
-- <a href="#passos"> Próximos passos </a>
 
 ## **Funcionalidades do Projeto**
 
@@ -41,7 +30,7 @@ Este projeto tem como fonte de dados para a sua criação a [Poke Api](https://p
 
 ```bash
 # Clone este repositório
-$ git clone linkrepo
+$ git clone https://github.com/AnaliceMarques/projeto-react-apis.git
 
 # Acesse a pasta do projeto no seu terminal
 $ cd projeto-react-apis
@@ -55,14 +44,14 @@ $ npm run start
 # A aplicação será iniciada na porta 3000, acesse pelo navegador: http://localhost:3000
 ```
 
+## **Próximos passos**
+
+- [ ] Inserir mais Pokémons na página inicial, através de paginação;
+- [ ] Armazenar os Pokémons que estão na Pokédex no localStorage;
+- [ ] Deixar o site responsivo para tablet e mobile.
+
 ## **Contato**
 
 E-mail: analicemarquessl@gmail.com
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logoColor=white)](https://www.linkedin.com/in/analicemarquessl)
-
-## **Próximos passos**
-
-- [] Inserir mais Pokémons na página inicial, através de paginação;
-- [] Armazenar os Pokémons que estão na Pokédex no localStorage;
-- [] Deixar o site responsivo para tablet e mobile.
