@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { Header } from "../../components/Header/Header";
+import { Header } from "../../Components/Header/Header";
 import { useRequestData } from "../../hooks/useRequestData";
-import { Box, Heading, Image, Progress, Text } from "@chakra-ui/react";
 import { getTypes } from "../../utils/ReturnPokemonType";
 import { getColors } from "../../utils/ReturnCardColor";
+import { Box, Heading, Image, Progress, Text } from "@chakra-ui/react";
 import PokeballBackgroundDetail from "../../image/pokeball-backgroundDetail.png";
 
 export default function PokemonDetailPage() {
