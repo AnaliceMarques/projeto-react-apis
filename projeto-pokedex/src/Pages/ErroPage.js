@@ -6,14 +6,23 @@ export default function ErrorPage() {
   return (
     <>
       <Header />
-      <Box w={"100%"} bg={"#5E5E5E"} pt="60px" pr="40px" pl="40px">
+      <Box
+        w="100%"
+        h="75vh"
+        bgColor="#5E5E5E"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
         <Heading
-          fontSize={"48px"}
-          fontFamily={"poppins.700"}
-          fontStyle={"bold"}
-          color={"#FFFFFF"}
+          fontSize="3rem"
+          fontFamily="poppins"
+          fontWeight="700"
+          fontStyle="bold"
+          color="#FFFFFF"
+          textAlign="center"
         >
-          Página não encontrada
+          Página não encontrada!
         </Heading>
       </Box>
     </>

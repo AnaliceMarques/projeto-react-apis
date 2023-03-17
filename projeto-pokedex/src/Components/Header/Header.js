@@ -6,8 +6,9 @@ import {
   goToPokemonsListPage,
 } from "../../routes/coordinator";
 import { GlobalContext } from "../../context/GlobalContext";
-import { Box, Button, Icon, Image } from "@chakra-ui/react";
+import { Box, Button, Icon, Image, useDisclosure } from "@chakra-ui/react";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
+import { AddAndRemoveModal } from "../Modal/AddAndRemoveModal";
 
 export const Header = () => {
   const location = useLocation();
@@ -16,9 +17,11 @@ export const Header = () => {
   const { pokedex, addToPokedex, removeFromPokedex } =
     useContext(GlobalContext);
 
-  const pokemonDetails = location.pathname.slice(9);
+  const idPokemonDetails = Number(location.pathname.slice(9));
 
-  const pokemonInPokedex = pokedex.includes(pokemonDetails);
+  const pokemonInPokedex = pokedex.includes(idPokemonDetails);
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const renderHeader = () => {
     switch (location.pathname) {
@@ -100,7 +103,7 @@ export const Header = () => {
             /> */}
           </Box>
         );
-      case `/details/${pokemonDetails}`:
+      case `/details/${idPokemonDetails}`:
         return (
           <Box
             display={"flex"}
@@ -150,7 +153,9 @@ export const Header = () => {
                   borderColor: "#FF6262",
                 }}
                 mr={"40px"}
-                onClick={() => removeFromPokedex(pokemonDetails)}
+                onClick={() =>
+                  removeFromPokedex(idPokemonDetails, onOpen, onClose)
+                }
               >
                 Excluir da Pokédex
               </Button>
@@ -170,11 +175,16 @@ export const Header = () => {
                   borderColor: "#33A4F5",
                 }}
                 mr={"40px"}
-                onClick={() => addToPokedex(pokemonDetails)}
+                onClick={() => addToPokedex(idPokemonDetails, onOpen, onClose)}
               >
                 Adicionar na Pokédex
               </Button>
             )}
+            <AddAndRemoveModal
+              isOpen={isOpen}
+              onClose={onClose}
+              pokemon={idPokemonDetails}
+            />
           </Box>
         );
       default:

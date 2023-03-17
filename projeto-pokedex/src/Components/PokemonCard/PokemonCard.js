@@ -15,123 +15,92 @@ import {
   ButtonGroup,
   Button,
   Box,
+  Container,
+  useDisclosure,
 } from "@chakra-ui/react";
+import PokeballBackground from "../../image/pokeball-background.png";
+import { AddAndRemoveModal } from "../Modal/AddAndRemoveModal";
 
-export const PokemonCard = ({
-  namePokemon,
-  addToPokedex,
-  removeFromPokedex,
-}) => {
+export const PokemonCard = ({ pokemonId, addToPokedex, removeFromPokedex }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
   const [pokemon, isLoading, isLoaded, error] = useRequestData(
     {},
-    `/${namePokemon}`
+    `/${pokemonId}`
   );
   // console.log(pokemon);
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <>
       {!isLoaded ? (
         " "
       ) : (
-        // (
-        // <Box>
-        //   <Box
-        //     bg={"gray"}
-        //     color={"white"}
-        //     width={"27.5rem"}
-        //     height={"13.125rem"}
-        //   >
-        //     <Text>
-        //       {pokemon.id < 10 ? `#0${pokemon.id}` : `#${pokemon.id}`}
-        //     </Text>
-        //     <Text textTransform={"capitalize"} size="md">
-        //       {pokemon.name}
-        //     </Text>
-        //  {pokemon.types.map((element) => {
-        //   return (
-        //     <Image
-        //       key={element.type.name}
-        //       src={getTypes(element.type.name)}
-        //       alt={element.type.name}
-        //     />
-        //   );
-        // })}
-
-        // <Image
-        //       src={pokemon.sprites.other["official-artwork"].front_default}
-        //       alt={pokemon.name}
-        //       borderRadius="lg"
-        //       w="193px"
-        //       h="193px"
-        //     />
-
-        //     <Button
-        //       variant="link"
-        //       cursor={"pointer"}
-        //       colorScheme="blue"
-        //       as={"u"}
-        //       onClick={() => goToPokemonDetailPage(navigate)}
-        //     >
-        //       Detalhes
-        //     </Button>
-
-        //     {location.pathname === "/" ? (
-        //       <Button
-        //         variant="solid"
-        //         colorScheme="blue"
-        //         onClick={() => addToPokedex(pokemon)}
-        //       >
-        //         Capturar!
-        //       </Button>
-        //     ) : (
-        //       <Button
-        //         variant="solid"
-        //         colorScheme="blue"
-        //         bg="#FF6262"
-        //         onClick={() => removeFromPokedex()}
-        //       >
-        //         Remover
-        //       </Button>
-        //     )}
-        //   </Box>
-        // </Box>
-        // )
-        <Card maxW="sm" bgColor={getColors(pokemon.types[0].type.name)}>
-          <CardBody display="flex" justifyContent="space-between">
-            <Stack mt="6" spacing="3">
-              <Text>
+        <Box
+          width="27.5rem"
+          height="16.625rem"
+          position="relative"
+          display="flex"
+          alignItems="end"
+        >
+          <Image
+            src={pokemon.sprites.other["official-artwork"].front_default}
+            alt={`Imagem do pokémon ${pokemon.name}`}
+            width="193px"
+            height="193px"
+            position="absolute"
+            top="0"
+            right="0"
+          />
+          <Box
+            bgColor={getColors(pokemon.types[0].type.name)}
+            width="27.5rem"
+            height="13.125rem"
+            borderRadius="0.75rem"
+            pt="1.563rem"
+            pl="1.438rem"
+            backgroundImage={PokeballBackground}
+            backgroundRepeat="no-repeat"
+            backgroundPosition="right"
+          >
+            <Box fontFamily="Inter" color={"#FFFFFF"}>
+              <Text fontSize="1rem">
                 {pokemon.id < 10 ? `#0${pokemon.id}` : `#${pokemon.id}`}
               </Text>
-              <Heading size="md">{pokemon.name}</Heading>
-              {/* <Text color="blue.600" fontSize="2xl"> */}
+              <Text textTransform={"capitalize"} fontSize="2rem">
+                {pokemon.name}
+              </Text>
+            </Box>
+            <Box display="flex">
               {pokemon.types.map((element) => {
                 return (
                   <Image
                     key={element.type.name}
                     src={getTypes(element.type.name)}
-                    alt={element.type.name}
+                    alt={`Card com Habilidade do Pokemon: ${element.type.name}`}
+                    height="1.938rem"
+                    mr="0.438rem"
                   />
                 );
               })}
-              {/* </Text> */}
-            </Stack>
-            <Image
-              src={pokemon.sprites.other["official-artwork"].front_default}
-              alt={pokemon.name}
-              borderRadius="lg"
-              w="193px"
-              h="193px"
-            />
-          </CardBody>
-          <CardFooter display="flex" justifyContent="space-between">
-            <ButtonGroup spacing="2">
+            </Box>
+            <Box
+              display="flex"
+              justifyContent="space-between"
+              mr="1.375rem"
+              mt="1.188rem"
+            >
               <Button
-                variant="ghost"
-                colorScheme="blue"
-                onClick={() => goToPokemonDetailPage(navigate, pokemon)}
+                variant="link"
+                fontFamily="poppins"
+                fontSize="1rem"
+                fontWeight="700"
+                color="#FFFFFF"
+                cursor={"pointer"}
+                as={"u"}
+                onClick={() => goToPokemonDetailPage(navigate, pokemon.id)}
               >
                 Detalhes
               </Button>
@@ -139,39 +108,47 @@ export const PokemonCard = ({
               {location.pathname === "/" ? (
                 <Button
                   variant="solid"
-                  colorScheme="blue"
-                  onClick={() => addToPokedex(pokemon.name)}
+                  backgroundColor="#FFFFFF"
+                  height="2.375rem"
+                  width="9.125rem"
+                  borderRadius="0.5rem"
+                  py="0.25rem"
+                  px="0.625rem"
+                  fontFamily="poppins"
+                  fontSize="1rem"
+                  fontWeight="400"
+                  color="#0F0F0F"
+                  onClick={() => addToPokedex(pokemon.id, onOpen, onClose)}
                 >
                   Capturar!
                 </Button>
               ) : (
                 <Button
                   variant="solid"
-                  colorScheme="blue"
-                  bg="#FF6262"
-                  onClick={() => removeFromPokedex(pokemon.name)}
+                  backgroundColor="#FF6262"
+                  height="2.375rem"
+                  width="9.125rem"
+                  borderRadius="0.5rem"
+                  py="0.25rem"
+                  px="0.625rem"
+                  fontFamily="poppins"
+                  fontSize="1rem"
+                  fontWeight="400"
+                  color="#FFFFFF"
+                  onClick={() => removeFromPokedex(pokemon.id, onOpen, onClose)}
                 >
-                  Remover
+                  Excluir
                 </Button>
               )}
-            </ButtonGroup>
-          </CardFooter>
-        </Card>
+              <AddAndRemoveModal
+                isOpen={isOpen}
+                onClose={onClose}
+                pokemon={pokemon.id}
+              />
+            </Box>
+          </Box>
+        </Box>
       )}
     </>
   );
 };
-
-// {pokemon.data.types.map((types, index) => {
-//   return <div key={index}>{types.type.name}</div>;
-// })}
-// Suzane Moura15:39
-// {pokemon.types.map((type) => {
-// return (
-// <Image
-//   key={type.type.name}
-//   src={getTypes(type.type.name)}
-//   alt={`Imagem de Habilidade do Pokemon: Habilidade de ${type.type.name}`}
-// />
-// );
-// })}

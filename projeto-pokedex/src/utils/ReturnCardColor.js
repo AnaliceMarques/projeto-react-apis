@@ -7,7 +7,7 @@ export const getColors = (type) => {
     case "dragon":
       return "#0A6CBF";
     case "electric":
-      return "#F4D23B";
+      return "#F7E076";
     case "fairy":
       return "#EC8FE6";
     case "fighting":
@@ -21,13 +21,13 @@ export const getColors = (type) => {
     case "grass":
       return "#729F92";
     case "ground":
-      return "#D97745";
+      return "#E4A07D";
     case "ice":
       return "#74CEC0";
     case "normal":
       return "#BF9762";
     case "poison":
-      return "#AD61AE";
+      return "#C690C6";
     case "psychic":
       return "#F67176";
     case "rock":

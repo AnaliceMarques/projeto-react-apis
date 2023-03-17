@@ -7,7 +7,7 @@ export function GlobalContextProvider({ children }) {
   const [pokedex, setPokedex] = useState([]);
   const [listPokemons, setListPokemons] = useState([]);
 
-  const [data, isLoading, isLoaded, error] = useRequestData([], "/?limit=21");
+  const [data, isLoading, isLoaded, error] = useRequestData([], "/?limit=30");
 
   useEffect(() => {
     if (isLoaded) {
@@ -15,25 +15,31 @@ export function GlobalContextProvider({ children }) {
     }
   }, [isLoaded]);
 
-  const addToPokedex = (namePokemonToAdd) => {
+  const addToPokedex = (idPokemonToAdd, onOpen, onClose) => {
     const isAlreadyOnPokedex = pokedex.find(
-      (pokemonInPokedex) => pokemonInPokedex === namePokemonToAdd
+      (pokemonInPokedex) => pokemonInPokedex === idPokemonToAdd
     );
 
     if (!isAlreadyOnPokedex) {
-      const newPokedex = [...pokedex, namePokemonToAdd];
-      setPokedex(newPokedex);
+      onOpen();
+      setTimeout(() => {
+        onClose();
+        const newPokedex = [...pokedex, idPokemonToAdd];
+        setPokedex(newPokedex);
+      }, 1000);
     }
-    alert("Gotcha!\nO Pokémon foi adicionado a sua Pokédex");
   };
 
-  const removeFromPokedex = (namePokemonToRemove) => {
-    const newPokedex = pokedex.filter(
-      (pokemonInPokedex) => pokemonInPokedex !== namePokemonToRemove
-    );
+  const removeFromPokedex = (idPokemonToRemove, onOpen, onClose) => {
+    onOpen();
+    setTimeout(() => {
+      onClose();
+      const newPokedex = pokedex.filter(
+        (pokemonInPokedex) => pokemonInPokedex !== idPokemonToRemove
+      );
 
-    setPokedex(newPokedex);
-    alert("Oh, no!\nO Pokémon foi removido da sua Pokédex");
+      setPokedex(newPokedex);
+    }, 1000);
   };
 
   return (
