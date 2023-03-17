@@ -1,6 +1,6 @@
-import { Box, Heading } from "@chakra-ui/react";
 import React from "react";
-import { Header } from "../components/Header/Header";
+import { Header } from "../Components/Header/Header";
+import { Box, Heading } from "@chakra-ui/react";
 
 export default function ErrorPage() {
   return (

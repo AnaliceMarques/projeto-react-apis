@@ -17,9 +17,6 @@ export const useRequestData = (initialState, path) => {
       setIsLoading(true);
       const res = await axios.get(`${baseURL}${path}`);
       setData(res.data);
-      // setTimeout(function () {
-      //   setIsLoading(false);
-      // }, 5000);
       setIsLoading(false);
       setIsLoaded(true);
     } catch (err) {

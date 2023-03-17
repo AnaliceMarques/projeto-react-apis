@@ -4,22 +4,9 @@ import { goToPokemonDetailPage } from "../../routes/coordinator";
 import { useRequestData } from "../../hooks/useRequestData";
 import { getTypes } from "../../utils/ReturnPokemonType";
 import { getColors } from "../../utils/ReturnCardColor";
-import {
-  Card,
-  CardBody,
-  CardFooter,
-  Image,
-  Stack,
-  Heading,
-  Text,
-  ButtonGroup,
-  Button,
-  Box,
-  Container,
-  useDisclosure,
-} from "@chakra-ui/react";
-import PokeballBackground from "../../image/pokeball-background.png";
 import { AddAndRemoveModal } from "../Modal/AddAndRemoveModal";
+import { Image, Text, Button, Box, useDisclosure } from "@chakra-ui/react";
+import PokeballBackground from "../../image/pokeball-background.png";
 
 export const PokemonCard = ({ pokemonId, addToPokedex, removeFromPokedex }) => {
   const location = useLocation();
@@ -29,7 +16,6 @@ export const PokemonCard = ({ pokemonId, addToPokedex, removeFromPokedex }) => {
     {},
     `/${pokemonId}`
   );
-  // console.log(pokemon);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 

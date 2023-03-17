@@ -6,9 +6,9 @@ import {
   goToPokemonsListPage,
 } from "../../routes/coordinator";
 import { GlobalContext } from "../../context/GlobalContext";
+import { AddAndRemoveModal } from "../Modal/AddAndRemoveModal";
 import { Box, Button, Icon, Image, useDisclosure } from "@chakra-ui/react";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
-import { AddAndRemoveModal } from "../Modal/AddAndRemoveModal";
 
 export const Header = () => {
   const location = useLocation();

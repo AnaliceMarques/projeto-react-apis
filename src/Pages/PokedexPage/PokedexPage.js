@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { Header } from "../../components/Header/Header";
-import { PokemonCard } from "../../components/PokemonCard/PokemonCard";
+import { Header } from "../../Components/Header/Header";
+import { PokemonCard } from "../../Components/PokemonCard/PokemonCard";
 import { GlobalContext } from "../../context/GlobalContext";
 import { Box, Heading, Text } from "@chakra-ui/react";
 
