@@ -7,7 +7,14 @@ import {
 } from "../../routes/coordinator";
 import { GlobalContext } from "../../context/GlobalContext";
 import { AddAndRemoveModal } from "../Modal/AddAndRemoveModal";
-import { Box, Button, Icon, Image, useDisclosure } from "@chakra-ui/react";
+import {
+  Button,
+  Grid,
+  GridItem,
+  Icon,
+  Image,
+  useDisclosure,
+} from "@chakra-ui/react";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 
 export const Header = () => {
@@ -23,207 +30,106 @@ export const Header = () => {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const renderHeader = () => {
-    switch (location.pathname) {
-      case "/":
-        return (
-          <Box
-            display={"flex"}
-            width={"100%"}
-            height={"160px"}
-            color={"##FFFFFF"}
-            justifyContent={"end"}
-            alignItems={"center"}
-            backgroundImage={LogoPokemon}
-            backgroundPosition={"center"}
-            backgroundRepeat={"no-repeat"}
+  return (
+    <Grid
+      templateColumns={"1fr 1fr 1fr"}
+      alignItems="center"
+      justifyItems="center"
+      width="100%"
+      height="10rem"
+      color="##FFFFFF"
+    >
+      <GridItem>
+        {location.pathname !== "/" ? (
+          <Button
+            variant="link"
+            color="#1A1A1A"
+            fontFamily="poppins"
+            fontSize="1.5rem"
+            as="u"
+            cursor="pointer"
+            onClick={() => goToPokemonsListPage(navigate)}
           >
-            {/* <Image
-              src={LogoPokemon}
-              alt="Pokémon"
-              width={"307px"}
-              height={"113px"}
-              mr={"239px"}
-            /> */}
-
-            <Button
-              bg={"#33A4F5"}
-              width={"287px"}
-              height={"74px"}
-              color={"#FFFFFF"}
-              fontFamily={"poppins.700"}
-              fontStyle={"bold"}
-              fontSize={"24px"}
-              transition={"all 0.4s"}
-              _active={{
-                bg: "#FFFFFF",
-                color: "#33A4F5",
-                border: "2px",
-                borderColor: "#33A4F5",
-              }}
-              mr={"41px"}
-              onClick={() => goToPokedexPage(navigate)}
-            >
-              Pokédex
-            </Button>
-          </Box>
-        );
-      case "/pokedex":
-        return (
-          <Box
-            display={"flex"}
-            width={"100%"}
-            height={"160px"}
-            color={"##FFFFFF"}
-            justifyContent="start"
-            alignItems={"center"}
-            backgroundImage={LogoPokemon}
-            backgroundPosition={"center"}
-            backgroundRepeat={"no-repeat"}
+            <Icon as={ChevronLeftIcon} />
+            Todos Pokémons
+          </Button>
+        ) : (
+          ""
+        )}
+      </GridItem>
+      <GridItem>
+        <Image
+          src={LogoPokemon}
+          alt="Logo Pokémon"
+          width="19.188rem"
+          height="7.063rem"
+        />
+      </GridItem>
+      <GridItem>
+        {location.pathname === "/" ? (
+          <Button
+            backgroundColor="#33A4F5"
+            width="17.938rem"
+            height="4.625rem"
+            color="#FFFFFF"
+            fontFamily="poppins"
+            fontWeight="700"
+            fontStyle="bold"
+            fontSize="1.5rem"
+            transition="all 0.4s"
+            _active={{
+              backgroundColor: "#FFFFFF",
+              color: "#33A4F5",
+              border: "0.125rem",
+              borderColor: "#33A4F5",
+            }}
+            onClick={() => goToPokedexPage(navigate)}
           >
-            <Button
-              variant={"link"}
-              color={"#1A1A1A"}
-              fontFamily={"poppins"}
-              fontSize={"24px"}
-              as={"u"}
-              ml={"82px"}
-              cursor={"pointer"}
-              onClick={() => goToPokemonsListPage(navigate)}
-            >
-              <Icon as={ChevronLeftIcon} />
-              Todos Pokémons
-            </Button>
-            {/* <Image
-              src={LogoPokemon}
-              alt="Pokémon"
-              width={"307px"}
-              height={"113px"}
-              ml={"256px"}
-            /> */}
-          </Box>
-        );
-      case `/details/${idPokemonDetails}`:
-        return (
-          <Box
-            display={"flex"}
-            width={"100%"}
-            height={"160px"}
-            color={"##FFFFFF"}
-            justifyContent={"space-between"}
-            alignItems={"center"}
-            backgroundImage={LogoPokemon}
-            backgroundPosition={"center"}
-            backgroundRepeat={"no-repeat"}
+            Pokédex
+          </Button>
+        ) : location.pathname === `/details/${idPokemonDetails}` ? (
+          <Button
+            backgroundColor={pokemonInPokedex ? "#FF6262" : "#33A4F5"}
+            width={"226px"}
+            height={"57px"}
+            color="#FFFFFF"
+            fontFamily="poppins"
+            fontWeight="400"
+            fontSize="1rem"
+            transition={"all 0.4s"}
+            _active={
+              pokemonInPokedex
+                ? {
+                    backgroundColor: "#FFFFFF",
+                    color: "#FF6262",
+                    border: "2px",
+                    borderColor: "#FF6262",
+                  }
+                : {
+                    backgroundColor: "#FFFFFF",
+                    color: "#33A4F5",
+                    border: "2px",
+                    borderColor: "#33A4F5",
+                  }
+            }
+            onClick={
+              pokemonInPokedex
+                ? () => removeFromPokedex(idPokemonDetails, onOpen, onClose)
+                : () => addToPokedex(idPokemonDetails, onOpen, onClose)
+            }
           >
-            <Button
-              variant={"link"}
-              color={"#1A1A1A"}
-              fontFamily={"poppins"}
-              fontSize={"24px"}
-              as={"u"}
-              ml={"82px"}
-              cursor={"pointer"}
-              onClick={() => goToPokemonsListPage(navigate)}
-            >
-              <Icon as={ChevronLeftIcon} />
-              Todos Pokémons
-            </Button>
-            {/* <Image
-              src={LogoPokemon}
-              alt="Pokémon"
-              width={"307px"}
-              height={"113px"}
-              mr={"301px"}
-              ml={"256px"}
-            /> */}
-            {pokemonInPokedex ? (
-              <Button
-                bg={"#FF6262"}
-                width={"226px"}
-                height={"57px"}
-                color={"#FFFFFF"}
-                fontFamily={"poppins.400"}
-                fontSize={"16px"}
-                transition={"all 0.4s"}
-                _active={{
-                  bg: "#FFFFFF",
-                  color: "#FF6262",
-                  border: "2px",
-                  borderColor: "#FF6262",
-                }}
-                mr={"40px"}
-                onClick={() =>
-                  removeFromPokedex(idPokemonDetails, onOpen, onClose)
-                }
-              >
-                Excluir da Pokédex
-              </Button>
-            ) : (
-              <Button
-                bg={"#33A4F5"}
-                width={"226px"}
-                height={"57px"}
-                color={"#FFFFFF"}
-                fontFamily={"poppins.400"}
-                fontSize={"16px"}
-                transition={"all 0.4s"}
-                _active={{
-                  bg: "#FFFFFF",
-                  color: "#33A4F5",
-                  border: "2px",
-                  borderColor: "#33A4F5",
-                }}
-                mr={"40px"}
-                onClick={() => addToPokedex(idPokemonDetails, onOpen, onClose)}
-              >
-                Adicionar na Pokédex
-              </Button>
-            )}
-            <AddAndRemoveModal
-              isOpen={isOpen}
-              onClose={onClose}
-              pokemon={idPokemonDetails}
-            />
-          </Box>
-        );
-      default:
-        return (
-          <Box
-            display={"flex"}
-            width={"100%"}
-            height={"160px"}
-            color={"##FFFFFF"}
-            justifyContent={"start"}
-            alignItems={"center"}
-            backgroundImage={LogoPokemon}
-            backgroundPosition={"center"}
-            backgroundRepeat={"no-repeat"}
-          >
-            <Button
-              variant={"link"}
-              color={"#1A1A1A"}
-              fontFamily={"poppins"}
-              fontSize={"24px"}
-              as={"u"}
-              ml={"82px"}
-              cursor={"pointer"}
-              onClick={() => goToPokemonsListPage(navigate)}
-            >
-              <Icon as={ChevronLeftIcon} />
-              Todos Pokémons
-            </Button>
-            {/* <Image
-              src={LogoPokemon}
-              alt="Pokémon"
-              width={"307px"}
-              height={"113px"}
-              mr={"301px"}
-              ml={"256px"}
-            /> */}
-          </Box>
-        );
-    }
-  };
-  return <>{renderHeader()}</>;
+            {" "}
+            {pokemonInPokedex ? "Excluir da Pokédex" : "Adicionar na Pokédex"}
+          </Button>
+        ) : (
+          ""
+        )}
+      </GridItem>
+      <AddAndRemoveModal
+        isOpen={isOpen}
+        onClose={onClose}
+        pokemon={idPokemonDetails}
+      />
+    </Grid>
+  );
 };

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Header } from "../../Components/Header/Header";
+import { Footer } from "../../Components/Footer/Footer";
 import { useRequestData } from "../../hooks/useRequestData";
 import { getTypes } from "../../utils/ReturnPokemonType";
 import { getColors } from "../../utils/ReturnCardColor";
@@ -42,57 +43,57 @@ export default function PokemonDetailPage() {
   }, [isLoaded]);
 
   return (
-    <div>
+    <>
       <Header />
       {!isLoaded ? (
-        <Text fontFamily="poppins" fontSize="2rem" color={"#FFFFFF"}>
+        <Text fontFamily="poppins" fontSize="2rem" color="#FFFFFF">
           Carregando detalhes do pokemon...
         </Text>
       ) : (
         <Box
-          w={"100%"}
-          bg={"#5E5E5E"}
-          pt="60px"
-          pr="25.86px"
-          pb="163px"
-          pl="25px"
+          width="100%"
+          backgroundColor="#5E5E5E"
+          pt="3.75rem"
+          pr="1.616rem"
+          pb="10.188rem"
+          pl="1.563rem"
           backgroundImage={PokeballBackgroundDetail}
           backgroundRepeat="no-repeat"
           backgroundPosition="top"
-          backgroundSize="60%"
+          backgroundSize="contain"
         >
           <Heading
-            fontSize={"48px"}
-            fontFamily={"poppins"}
-            fontWeight={"700"}
-            fontStyle={"bold"}
-            color={"#FFFFFF"}
+            fontSize="3rem"
+            fontFamily="poppins"
+            fontWeight="700"
+            fontStyle="bold"
+            color="#FFFFFF"
           >
             Detalhes
           </Heading>
           <Box
-            bgColor={getColors(pokemon.types[0].type.name)}
+            backgroundColor={getColors(pokemon.types[0].type.name)}
             width="86.821rem"
             height="41.438rem"
             borderRadius="2.368rem"
             mt="3.5rem"
             pt="1.625rem"
-            pb="1.625"
+            pb="1.625rem"
             pl="2.75rem"
             backgroundImage={PokeballBackgroundDetail}
             backgroundRepeat="no-repeat"
             backgroundPosition="right"
             backgroundSize="fit"
-            position={"relative"}
+            position="relative"
           >
             <Image
               src={pokemon.sprites.other["official-artwork"].front_default}
               alt={`Imagem do pokémon ${pokemon.name}`}
-              width="270px"
-              height="270px"
+              width="16.875rem"
+              height="16.875rem"
               position="absolute"
-              top="-132px"
-              right="35.14px"
+              top="-8.25rem"
+              right="2.196rem"
             />
 
             <Box display="flex">
@@ -196,11 +197,11 @@ export default function PokemonDetailPage() {
               </Box>
               <Box>
                 <Box>
-                  <Box fontFamily="Inter" color={"#FFFFFF"}>
+                  <Box fontFamily="Inter" color="#FFFFFF">
                     <Text fontSize="1rem">
                       {pokemon.id < 10 ? `#0${pokemon.id}` : `#${pokemon.id}`}
                     </Text>
-                    <Text textTransform={"capitalize"} fontSize="3rem">
+                    <Text textTransform="capitalize" fontSize="3rem">
                       {pokemon.name}
                     </Text>
                   </Box>
@@ -260,6 +261,7 @@ export default function PokemonDetailPage() {
           </Box>
         </Box>
       )}
-    </div>
+      <Footer />
+    </>
   );
 }

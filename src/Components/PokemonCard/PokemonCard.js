@@ -34,14 +34,14 @@ export const PokemonCard = ({ pokemonId, addToPokedex, removeFromPokedex }) => {
           <Image
             src={pokemon.sprites.other["official-artwork"].front_default}
             alt={`Imagem do pokémon ${pokemon.name}`}
-            width="193px"
-            height="193px"
+            width="12.063rem"
+            height="12.063rem"
             position="absolute"
             top="0"
             right="0"
           />
           <Box
-            bgColor={getColors(pokemon.types[0].type.name)}
+            backgroundColor={getColors(pokemon.types[0].type.name)}
             width="27.5rem"
             height="13.125rem"
             borderRadius="0.75rem"
@@ -51,11 +51,11 @@ export const PokemonCard = ({ pokemonId, addToPokedex, removeFromPokedex }) => {
             backgroundRepeat="no-repeat"
             backgroundPosition="right"
           >
-            <Box fontFamily="Inter" color={"#FFFFFF"}>
+            <Box fontFamily="Inter" color="#FFFFFF">
               <Text fontSize="1rem">
                 {pokemon.id < 10 ? `#0${pokemon.id}` : `#${pokemon.id}`}
               </Text>
-              <Text textTransform={"capitalize"} fontSize="2rem">
+              <Text textTransform="capitalize" fontSize="2rem">
                 {pokemon.name}
               </Text>
             </Box>
@@ -84,8 +84,8 @@ export const PokemonCard = ({ pokemonId, addToPokedex, removeFromPokedex }) => {
                 fontSize="1rem"
                 fontWeight="700"
                 color="#FFFFFF"
-                cursor={"pointer"}
-                as={"u"}
+                cursor="pointer"
+                as="u"
                 onClick={() => goToPokemonDetailPage(navigate, pokemon.id)}
               >
                 Detalhes

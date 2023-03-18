@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Header } from "../../Components/Header/Header";
+import { Footer } from "../../Components/Footer/Footer";
 import { PokemonCard } from "../../Components/PokemonCard/PokemonCard";
 import { GlobalContext } from "../../context/GlobalContext";
 import { Box, Heading, Text } from "@chakra-ui/react";
@@ -10,13 +11,19 @@ export default function PokedexPage() {
   return (
     <>
       <Header />
-      <Box w={"100%"} bg={"#5E5E5E"} pt="60px" pr="40px" pb="350px" pl="40px">
+      <Box
+        width="100%"
+        backgroundColor="#5E5E5E"
+        pt="3.75rem"
+        px="2.5rem"
+        pb="21.875rem"
+      >
         <Heading
-          fontSize={"48px"}
-          fontFamily={"poppins"}
+          fontSize="3rem"
+          fontFamily="poppins"
           fontWeight="700"
-          fontStyle={"bold"}
-          color={"#FFFFFF"}
+          fontStyle="bold"
+          color="#FFFFFF"
         >
           Meus Pokémons
         </Heading>
@@ -24,7 +31,7 @@ export default function PokedexPage() {
           <Text
             fontFamily="poppins"
             fontSize="2rem"
-            color={"#FFFFFF"}
+            color="#FFFFFF"
             textAlign="center"
             mt="4rem"
           >
@@ -49,6 +56,7 @@ export default function PokedexPage() {
           </Box>
         )}
       </Box>
+      <Footer />
     </>
   );
 }
