@@ -68,7 +68,7 @@ export const Header = () => {
       <GridItem>
         {location.pathname === "/" ? (
           <Button
-            bg="#33A4F5"
+            backgroundColor="#33A4F5"
             width="17.938rem"
             height="4.625rem"
             color="#FFFFFF"
@@ -78,7 +78,7 @@ export const Header = () => {
             fontSize="1.5rem"
             transition="all 0.4s"
             _active={{
-              bg: "#FFFFFF",
+              backgroundColor: "#FFFFFF",
               color: "#33A4F5",
               border: "0.125rem",
               borderColor: "#33A4F5",
@@ -89,7 +89,7 @@ export const Header = () => {
           </Button>
         ) : location.pathname === `/details/${idPokemonDetails}` ? (
           <Button
-            bg={pokemonInPokedex ? "#FF6262" : "#33A4F5"}
+            backgroundColor={pokemonInPokedex ? "#FF6262" : "#33A4F5"}
             width={"226px"}
             height={"57px"}
             color="#FFFFFF"
@@ -100,13 +100,13 @@ export const Header = () => {
             _active={
               pokemonInPokedex
                 ? {
-                    bg: "#FFFFFF",
+                    backgroundColor: "#FFFFFF",
                     color: "#FF6262",
                     border: "2px",
                     borderColor: "#FF6262",
                   }
                 : {
-                    bg: "#FFFFFF",
+                    backgroundColor: "#FFFFFF",
                     color: "#33A4F5",
                     border: "2px",
                     borderColor: "#33A4F5",
