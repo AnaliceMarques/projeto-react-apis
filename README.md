@@ -2,7 +2,7 @@
 
 O Projeto React e APIs é um site de pokémons que possui três páginas: Home, Pokedex e Detalhes.
 
-Este projeto tem como fonte de dados para a sua criação a [Poke Api](https://pokeapi.co/ "Poke Api"), uma Api pública, muito usada para aplicações focadas em aprendizado de programação.
+Este projeto tem como fonte de dados para a sua criação a [Poke Api](https://pokeapi.co/ "Poke Api"), uma Api pública, muito utilizada para aplicações focadas em aprendizado de programação.
 
 ## **Funcionalidades do Projeto**
 
@@ -16,8 +16,8 @@ Este projeto tem como fonte de dados para a sua criação a [Poke Api](https://p
 
 ## **Link de Acesso**
 
-- Deploy do projeto realizado no surge
-  (link do deploy)
+- Deploy do projeto realizado no surge:
+  https://projeto-pokedex-analice-marques.surge.sh
 
 ## **Tecnologias Utilizadas**
 
@@ -52,6 +52,6 @@ $ npm run start
 
 ## **Contato**
 
-E-mail: analicemarquessl@gmail.com
+analicemarquessl@gmail.com
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logoColor=white)](https://www.linkedin.com/in/analicemarquessl)
+[LinkedIn](https://www.linkedin.com/in/analicemarquessl)
